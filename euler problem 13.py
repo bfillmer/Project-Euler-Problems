@@ -122,4 +122,11 @@ def returnLines():
 
 lines = returnLines()
 
-print list(lines)
+# Quick hack code, go through lines in scientific notation, default first twelve
+# digits, and sum them. Quick and easy. Take first ten digits and that's the answer.
+x = 0
+
+for line in list(lines):
+	x = x + float(line)
+	
+print(x)
