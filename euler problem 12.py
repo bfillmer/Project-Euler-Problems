@@ -26,17 +26,23 @@ What is the value of the first triangle number to have over five hundred divisor
 
 """
 
-#from sympy import *
+from sympy import *
 
-def factors(n):
-    return filter(lambda i: n % i == 0, range(1, n + 1))
+# Acquire triangle value for any value of n. Euler, of course.
+v = lambda n: (n*(n+1))/2
 
-def loop():
-	v = 1
-	i = 2
-	while (len(factors(v)) < 500):
-		v = v + i
+# Find factors of a number, return the number of factors as we don't care about what they are.
+def factors(n):    
+    return len(set(reduce(list.__add__, 
+                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0))))
+
+# Grab the number of factors of a triangle number, run until that number of factors is 500. Spit out the triangle number.
+def triangleNumber():
+	i = 1
+	while factors(v(i)) <= 500:
 		i = i + 1
-	print v
-	
-loop()
+		
+	print v(i)
+
+# Run ze code.
+triangleNumber()
